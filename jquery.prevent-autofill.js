@@ -99,6 +99,15 @@
                 elem.val(newValue);
             }
         });
+        
+        //This looks weird, but if you click on an input that already has focus, Chrome lights up their autofill feature.
+        //Dropping and reaquiring focus prevents this.
+        elem.click(function(e){
+            if($(this).is(":focus")){
+                $(this).blur();
+                $(this).focus();
+            }
+        });
     }
 
     $.fn.preventAutofill = function(){
