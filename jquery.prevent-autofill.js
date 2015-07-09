@@ -95,7 +95,7 @@
                     currentValue = leftOfCursor+rightOfSelection;
                 }
                 var char = fromKeyCode(e.keyCode, e.shiftKey);
-                var newValue = currentValue.substring(0, pos)+char+currentValue.substring(pos+1);
+                var newValue = currentValue.substring(0, pos)+char+currentValue.substring(pos);
                 elem.val(newValue);
                 setCursorPosition(elem, pos+1);
             }
