@@ -15,14 +15,47 @@
         return this;
     };
 
+    var isNumeric = function(char){
+        return /^[0-9]+$/.test(char);
+    }
+
     var isAlpha = function(char){
         return /^[a-zA-Z]+$/.test(char);
     }
 
     var fromKeyCode = function(keycode, shift){
         var char = String.fromCharCode((96 <= keycode && keycode <= 105) ? keycode-48 : keycode)
-        if(isAlpha(char) && !shift){
-            char = char.toLocaleLowerCase();
+        if(isAlpha(char)){
+            if(!shift){
+                char = char.toLocaleLowerCase();
+            }
+        } else if(isNumeric(char)){
+            switch(char){
+                case '1': return '!';
+                case '2': return '@';
+                case '3': return '#';
+                case '4': return '$';
+                case '5': return '%';
+                case '6': return '^';
+                case '7': return '&';
+                case '8': return '*';
+                case '9': return '(';
+                case '0': return ')';
+            }
+        } else {
+            switch(keycode){
+                case 186: return shift ? ':' : ';';
+                case 187: return shift ?  '+' : '=';
+                case 188: return shift ? '<' : ',';
+                case 189: return shift ? '_' : '-';
+                case 190: return shift ? '>' : '.';
+                case 191: return shift ? '?' : '/';
+                case 192: return shift ? '~' : '`';
+                case 219: return shift ? '{' : '[';
+                case 220: return shift ? '|' : '\\';
+                case 221: return shift ? '}' : ']';
+                case 222: return shift ? '"' : '\'';
+            }
         }
         return char;
     }
@@ -88,7 +121,7 @@
                 setCursorPosition(elem, pos - deleteLeft);
             }
             // Handle normal input keys
-            if ((e.keyCode == 32 || (e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105)) || (event.keyCode >= 65 && event.keyCode <= 90)){
+            if ((e.keyCode == 32 || (e.keyCode >= 48 && e.keyCode <= 57) || (e.keyCode >= 96 && e.keyCode <= 105)) || (event.keyCode >= 65 && event.keyCode <= 90) || (event.keyCode >= 186 && event.keyCode <= 192) || (event.keyCode >= 219 && event.keyCode <= 222)){
                 if(len > 0){
                     var leftOfCursor = currentValue.substring(0, pos);
                     var rightOfSelection = currentValue.substring(pos+len);
