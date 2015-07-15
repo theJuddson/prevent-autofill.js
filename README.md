@@ -5,4 +5,4 @@ Use: Execute preventAutofill() on any inputs that you'd like protected from auto
 
 $(input selector).preventAutofill();
 
-NOTE: I currently only support characters a-z, A-Z, 0-9, space and some basic symbols. I only provided support for  characters that I would need to fill out an address form.
+NOTE: I currently only support characters a-z, A-Z, 0-9, space and the basic symbols available through SHIFT+KEYPRESS on a standard US keyboard. I only provided support for characters that I would need to fill out an address form.
